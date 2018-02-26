@@ -4,6 +4,8 @@ An issue was discovered in secdrv.sys as shipped in Microsoft Windows Vista, Win
 
 The vulnerability was reported to Microsoft, and since it does not affect an up-to-date Windows machine (only version prior to KB3086255), they will not take any action. Was tested and exploited successfully on Windows 7 x86.
 
+Also related to CVE-2018-7250: [a link] https://github.com/Elvin9/SecDrvPoolLeak
+
 ### Test Enviroment
 Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
 VM : 4GB RAM, 1 CPU
