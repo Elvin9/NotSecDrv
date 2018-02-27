@@ -6,10 +6,8 @@ The vulnerability was reported to Microsoft, and since it does not affect an up-
 
 Also related to [CVE-2018-7250](https://github.com/Elvin9/SecDrvPoolLeak).
 
-### Test Enviroment
-Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
-VM : 4GB RAM, 1 CPU
-Hardware: Windows 10 Pro 64 bit, Motherboard Gigabyte Z370 HD3, 16GB RAM, Intel i5-8400 2.80GHz (6 CPUs)
+### Screenshot
+![Alt text](https://github.com/Elvin9/NotSecDrv/raw/master/VirtualBox_Testing_NotSecDrv.png)
 
 ### Details
 
@@ -41,5 +39,10 @@ The steps taken to successfully exploit this vulnerability are as following:
 * Spray the pool again from the new thread (after the chunk was freed) in order to replace the freed chunk with an attacker controlled allocation. This fake chunk should contain valid pointers to the necessary structures.
 * Put the shellcode's address at the correct offset of the function pointer in the fake structure we created, and wait for it to be called (it will be called from IOCTL type 0x97, after it finishes the encryption).
 * Enjoy! 
-   
+  
+  
+### Test Enviroment
+Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
+VM : 4GB RAM, 1 CPU
+Hardware: Windows 10 Pro 64 bit, Motherboard Gigabyte Z370 HD3, 16GB RAM, Intel i5-8400 2.80GHz (6 CPUs)
 
