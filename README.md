@@ -42,7 +42,7 @@ The steps taken to successfully exploit this vulnerability are as following:
   
   
 ### Test Enviroment
-* Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
-* VM : 4GB RAM, 1 CPU
-* Hardware: Windows 10 Pro 64 bit, Motherboard Gigabyte Z370 HD3, 16GB RAM, Intel i5-8400 2.80GHz (6 CPUs)
+**OS:** Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
+**VM:** 4GB RAM, 1 CPU
+**Hardware:** Windows 10 Pro 64 bit, Motherboard Gigabyte Z370 HD3, 16GB RAM, Intel i5-8400 2.80GHz (6 CPUs)
 
