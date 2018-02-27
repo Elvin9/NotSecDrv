@@ -16,10 +16,10 @@ This documents my little research about the secdrv.sys driver. All the described
 Offset 0x4 of the input buffer to the IOCTL (0x0CA002813) contains a number that I will refer to as the TYPE. 
 The main handler function of this IOCTL (0x0CA002813), sub_11A88 receives 3 different types: 0x96, 0x97 and 0x98.
 
-**0x96** allocates a PagedPool chunk, stores it in an array of size 0x64, initializes it (sort of :)), and copies a part of it to the user supplied buffer at offset 0x10.
-**0x97** uses a previously allocated chunk, that was allocated with 0x96 (it find the right chunk in the mentiones array by a tag),
+* **0x96** allocates a PagedPool chunk, stores it in an array of size 0x64, initializes it (sort of :)), and copies a part of it to the user supplied buffer at offset 0x10.
+* **0x97** uses a previously allocated chunk, that was allocated with 0x96 (it find the right chunk in the mentiones array by a tag),
 and uses it to encrypt the user input buffer with some sort of a modified xor encryption routine. It then calls a function that is stored in another structure, which is pointed by a field in the allocated chunk.
-**0x98** frees a chunk that was allocated with 0x96. It finds the right chunk by searching the tag given to it in the allocation process.
+* **0x98** frees a chunk that was allocated with 0x96. It finds the right chunk by searching the tag given to it in the allocation process.
 
 #### Info Leak (CVE-2018-7250)
 After IOCTL type 0x96 allocated a new chunk and initialized it, but not fully, it copies the chunk to usermode. 16 bits in the newly allocated chunk were not initialized, and contain data from previous PagedPool allocations. The uninitialized bits are then copies to usermode at .text:00011BE9 by the REP MOVSD instruction. PoC code [here](https://github.com/Elvin9/SecDrvPoolLeak).
@@ -42,7 +42,7 @@ The steps taken to successfully exploit this vulnerability are as following:
   
   
 ### Test Enviroment
-Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
-VM : 4GB RAM, 1 CPU
-Hardware: Windows 10 Pro 64 bit, Motherboard Gigabyte Z370 HD3, 16GB RAM, Intel i5-8400 2.80GHz (6 CPUs)
+* Windows 7 Kernel Version 7600 MP (1 procs) Free x86 compatible Built by: 7600.16385.x86fre.win7_rtm.090713-1255
+* VM : 4GB RAM, 1 CPU
+* Hardware: Windows 10 Pro 64 bit, Motherboard Gigabyte Z370 HD3, 16GB RAM, Intel i5-8400 2.80GHz (6 CPUs)
 
